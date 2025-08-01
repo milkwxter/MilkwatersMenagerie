@@ -1,0 +1,19 @@
+{
+  "itemGroup.milkwatersmenagerie": "Milkwater's Menagerie",
+  "block.milkwatersmenagerie.rotten_flesh_block": "Rotten Flesh Block",
+  
+  "item.milkwatersmenagerie.zombie_arm": "Zombie Arm",
+  "item.milkwatersmenagerie.starfury": "Starfury",
+  "item.milkwatersmenagerie.tsunami": "Tsunami",
+  
+  "item.milkwatersmenagerie.angry_zombie_spawn_egg": "Angry Zombie Spawn Egg",
+  "entity.milkwatersmenagerie.angryzombie": "Angry Zombie",
+
+  "milkwatersmenagerie.configuration.title": "Milkwater's Menagerie Configs",
+  "milkwatersmenagerie.configuration.section.milkwatersmenagerie.common.toml": "Milkwater's Menagerie Configs",
+  "milkwatersmenagerie.configuration.section.milkwatersmenagerie.common.toml.title": "Milkwater's Menagerie Configs",
+  "milkwatersmenagerie.configuration.items": "Item List",
+  "milkwatersmenagerie.configuration.logDirtBlock": "Log Dirt Block",
+  "milkwatersmenagerie.configuration.magicNumberIntroduction": "Magic Number Text",
+  "milkwatersmenagerie.configuration.magicNumber": "Magic Number"
+}
