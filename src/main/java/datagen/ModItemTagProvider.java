@@ -21,5 +21,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
 	
 	protected void addTags(HolderLookup.Provider provider) {
 		tag(ItemTags.SWORDS).add(ModItems.ZOMBIE_ARM_ITEM.get());
+		tag(ItemTags.SWORDS).add(ModItems.STARFURY_ITEM.get());
 	}
 }

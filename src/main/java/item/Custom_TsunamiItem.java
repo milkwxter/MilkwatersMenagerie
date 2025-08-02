@@ -1,21 +1,19 @@
 package item;
 
 import entity.ModEntities;
-import entity.custom.NoIFrameArrowEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.entity.projectile.SpectralArrow;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-
-// TODO: REMOVE INVULNERABLITY FRAMES, MORE TEXTURES FOR DRAWING BACK BOW, COOL SOUND?!
 
 public class Custom_TsunamiItem extends BowItem {
 	// le constructor
@@ -36,26 +34,37 @@ public class Custom_TsunamiItem extends BowItem {
 	    // find what ammo he is using
 	    ItemStack ammo = player.getProjectile(stack);
 	    if (ammo.isEmpty()) return;
-
+	    
+	    // how long did he charge the bow?
+	    int chargeDuration = this.getUseDuration(stack, shooter) - timeLeft;
+	    float drawStrength = getPowerForTime(chargeDuration);
+	    if (drawStrength < 0.1F) return;
+	    
 	    // on the server side, do this
 	    if (!level.isClientSide) {
 	        ArrowItem arrowItem = (ArrowItem) (ammo.getItem() instanceof ArrowItem ? ammo.getItem() : Items.ARROW);
 
 	        for (int i = -2; i <= 2; i++) {
-	            NoIFrameArrowEntity arrow = new NoIFrameArrowEntity(ModEntities.NO_IFRAME_ARROW.get(), level);
-	            arrow.setBaseDamage(2.0);
-	            arrow.pickup = NoIFrameArrowEntity.Pickup.CREATIVE_ONLY;
+	            Arrow arrow = (Arrow) arrowItem.createArrow(level, ammo, shooter, weaponStack);
+	            
+	            arrow.getPersistentData().putBoolean("RemoveIFrames", true);
+	            
+	            arrow.pickup = Arrow.Pickup.CREATIVE_ONLY;
 	            arrow.setOwner(player);
 	            arrow.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
 
 	            Vec3 direction = shooter.getLookAngle().normalize();
 	            double spreadOffsetY = i * 0.1;
-	            arrow.shoot(direction.x, direction.y + spreadOffsetY, direction.z, 2.0F, 1.0F);
+	            
+	            float velocity = drawStrength * 2.0F;
+	            
+	            arrow.shoot(direction.x, direction.y + spreadOffsetY, direction.z, velocity, 1.0F);
 
 	            level.addFreshEntity(arrow);
 	        }
 	        
 	        stack.hurtAndBreak(1, shooter, weaponStack.getEquipmentSlot());
+	        player.awardStat(Stats.ITEM_USED.get(this));
 	    }
 
 	    ammo.shrink(1);

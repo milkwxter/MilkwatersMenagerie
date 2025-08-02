@@ -3,7 +3,6 @@ package item;
 import entity.ModEntities;
 import milkwater.milkmenagerie.MilkwatersMenagerie;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
@@ -28,7 +27,7 @@ public class ModItems {
     
     public static final DeferredItem<Custom_StarfuryItem> STARFURY_ITEM = ITEMS.register("starfury",
     		() -> new Custom_StarfuryItem(ModToolTiers.NATURAL_TIER, new Custom_StarfuryItem.Properties()
-    				.attributes(Custom_StarfuryItem.createAttributes(ModToolTiers.NATURAL_TIER, 6, -1f))));
+    				.attributes(Custom_StarfuryItem.createAttributes(ModToolTiers.NATURAL_TIER, 6, -2.4f))));
     
     // My custom impossible items
     public static final DeferredItem<Item> TSUNAMI_ITEM = ITEMS.register("tsunami",
