@@ -15,12 +15,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 	}
 	
 	protected void registerModels() {
+		// swords and bows and shit
 		handheldItem(ModItems.ZOMBIE_ARM_ITEM);
 		handheldItem(ModItems.STARFURY_ITEM);
-		
 		handheldItem(ModItems.TSUNAMI_ITEM);
-		
-		withExistingParent(ModItems.ANGRY_ZOMBIE_SPAWN_EGG_ITEM.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		handheldItem(ModItems.NIGHTS_EDGE_ITEM);
 	}
 	
 	private ItemModelBuilder handheldItem(DeferredItem<?> item) {

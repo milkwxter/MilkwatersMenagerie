@@ -5,9 +5,7 @@
   "item.milkwatersmenagerie.zombie_arm": "Zombie Arm",
   "item.milkwatersmenagerie.starfury": "Starfury",
   "item.milkwatersmenagerie.tsunami": "Tsunami",
-  
-  "item.milkwatersmenagerie.angry_zombie_spawn_egg": "Angry Zombie Spawn Egg",
-  "entity.milkwatersmenagerie.angryzombie": "Angry Zombie",
+  "item.milkwatersmenagerie.nights_edge": "Night's Edge",
 
   "milkwatersmenagerie.configuration.title": "Milkwater's Menagerie Configs",
   "milkwatersmenagerie.configuration.section.milkwatersmenagerie.common.toml": "Milkwater's Menagerie Configs",

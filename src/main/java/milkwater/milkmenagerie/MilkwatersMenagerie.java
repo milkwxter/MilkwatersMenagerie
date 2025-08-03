@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 
 import entity.ModEntities;
-import entity.client.AngryZombieRenderer;
 import entity.client.StarfuryStarRenderer;
 import item.ModItems;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -55,7 +54,7 @@ public class MilkwatersMenagerie {
                 output.accept(ModItems.ZOMBIE_ARM_ITEM.get());
                 output.accept(ModItems.STARFURY_ITEM.get());
                 output.accept(ModItems.TSUNAMI_ITEM.get());
-                output.accept(ModItems.ANGRY_ZOMBIE_SPAWN_EGG_ITEM.get());
+                output.accept(ModItems.NIGHTS_EDGE_ITEM.get());
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -98,7 +97,6 @@ public class MilkwatersMenagerie {
     	@SubscribeEvent
     	public static void onClientSetup(FMLClientSetupEvent event) {
     		event.enqueueWork(() -> {
-                EntityRenderers.register(ModEntities.ANGRYZOMBIE.get(), AngryZombieRenderer::new);
                 EntityRenderers.register(ModEntities.STARFURY_STAR.get(), StarfuryStarRenderer::new);
             });
     	}
