@@ -3,7 +3,7 @@ package event;
 import milkwater.milkmenagerie.MilkwatersMenagerie;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.phys.EntityHitResult;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -16,9 +16,8 @@ public class ModEventBusEvents {
 	@SubscribeEvent
 	public static void onArrowImpact(ProjectileImpactEvent event) {
 	    Entity projectile = event.getEntity();
-
-	    // Only proceed if it's a vanilla Arrow with your custom tag
-	    if (projectile instanceof Arrow arrow && arrow.getPersistentData().getBoolean("RemoveIFrames")) {
+	    
+	    if (projectile instanceof AbstractArrow arrow && arrow.getPersistentData().getBoolean("RemoveIFrames")) {
 
 	        // Check if we hit an entity
 	        if (event.getRayTraceResult().getType() == HitResult.Type.ENTITY) {

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+	"l": {
+	  "item": "minecraft:leather"
+	}
+  },
+  "pattern": [
+    "ii",
+    "li"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milkwatersmenagerie:bladed_glove"
+  }
+}

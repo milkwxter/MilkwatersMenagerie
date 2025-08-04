@@ -1,17 +1,18 @@
 package item;
 
+import java.util.List;
+
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.Arrow;
-import net.minecraft.world.item.ArrowItem;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 
 public class Custom_TsunamiItem extends BowItem {
 	// le constructor
@@ -40,28 +41,14 @@ public class Custom_TsunamiItem extends BowItem {
 	    
 	    // on the server side, do this
 	    if (!level.isClientSide) {
-	        ArrowItem arrowItem = (ArrowItem) (ammo.getItem() instanceof ArrowItem ? ammo.getItem() : Items.ARROW);
-
+	    	List<ItemStack> list = draw(stack, ammo, player);
+	    	ServerLevel serverLevel = (ServerLevel) level;
+	    	
 	        for (int i = -2; i <= 2; i++) {
-	            Arrow arrow = (Arrow) arrowItem.createArrow(level, ammo, shooter, weaponStack);
-	            
-	            arrow.getPersistentData().putBoolean("RemoveIFrames", true);
-	            
-	            arrow.pickup = Arrow.Pickup.CREATIVE_ONLY;
-	            arrow.setOwner(player);
-	            arrow.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
-
-	            Vec3 direction = shooter.getLookAngle().normalize();
-	            double spreadOffsetY = i * 0.1;
-	            
-	            float velocity = drawStrength * 2.0F;
-	            
-	            arrow.shoot(direction.x, direction.y + spreadOffsetY, direction.z, velocity, 1.0F);
-
-	            level.addFreshEntity(arrow);
+	        	float verticalOffset = i * 0.5F;
+	        	this.shootVertical(serverLevel, player, player.getUsedItemHand(), stack, list, drawStrength * 2.0F, 1.0F, drawStrength == 1.0F, verticalOffset);
 	        }
 	        
-	        stack.hurtAndBreak(1, shooter, weaponStack.getEquipmentSlot());
 	        player.awardStat(Stats.ITEM_USED.get(this));
 	    }
 
@@ -70,5 +57,24 @@ public class Custom_TsunamiItem extends BowItem {
 	    level.playSound(null, shooter.getX(), shooter.getY(), shooter.getZ(),
 	        SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F);
 	}
-
+	
+	public void shootVertical(ServerLevel level, LivingEntity shooter, InteractionHand hand, ItemStack weapon, List<ItemStack> projectileItems, float velocity, float inaccuracy, boolean isCrit, float offsetY) {
+		for (int i = 0; i < projectileItems.size(); i++) {
+	        ItemStack itemstack = projectileItems.get(i);
+	        if (!itemstack.isEmpty()) {
+	            Projectile projectile = this.createProjectile(level, shooter, weapon, itemstack, isCrit);
+	            
+	            projectile.setPos(shooter.getX(), shooter.getEyeY() + offsetY, shooter.getZ());
+	            projectile.getPersistentData().putBoolean("RemoveIFrames", true);
+	            this.shootProjectile(shooter, projectile, i, velocity, inaccuracy, offsetY, null);
+	            
+	            level.addFreshEntity(projectile);
+	            weapon.hurtAndBreak(this.getDurabilityUse(itemstack), shooter, LivingEntity.getSlotForHand(hand));
+	            if (weapon.isEmpty()) {
+	                break;
+	            }
+	        }
+	    }
+	}
+	
 }

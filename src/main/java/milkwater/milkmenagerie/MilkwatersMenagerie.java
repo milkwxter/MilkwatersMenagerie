@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 
 import entity.ModEntities;
+import entity.client.FireArrowRenderer;
 import entity.client.StarfuryStarRenderer;
 import item.ModItems;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -52,9 +53,11 @@ public class MilkwatersMenagerie {
             .displayItems((parameters, output) -> {
                 output.accept(ModItems.ROTTENFLESH_BLOCK_ITEM.get());
                 output.accept(ModItems.ZOMBIE_ARM_ITEM.get());
+                output.accept(ModItems.BLADED_GLOVE_ITEM.get());
                 output.accept(ModItems.STARFURY_ITEM.get());
                 output.accept(ModItems.TSUNAMI_ITEM.get());
                 output.accept(ModItems.NIGHTS_EDGE_ITEM.get());
+                output.accept(ModItems.FIRE_ARROW_ITEM.get());
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -98,6 +101,7 @@ public class MilkwatersMenagerie {
     	public static void onClientSetup(FMLClientSetupEvent event) {
     		event.enqueueWork(() -> {
                 EntityRenderers.register(ModEntities.STARFURY_STAR.get(), StarfuryStarRenderer::new);
+                EntityRenderers.register(ModEntities.FIRE_ARROW.get(), FireArrowRenderer::new);
             });
     	}
     	

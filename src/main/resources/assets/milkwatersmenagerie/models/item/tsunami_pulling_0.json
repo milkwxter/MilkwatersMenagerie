@@ -1,0 +1,6 @@
+{
+    "parent": "milkwatersmenagerie:item/tsunami",
+    "textures": {
+        "layer0": "milkwatersmenagerie:item/tsunami_texture_pulling_0"
+    }
+}

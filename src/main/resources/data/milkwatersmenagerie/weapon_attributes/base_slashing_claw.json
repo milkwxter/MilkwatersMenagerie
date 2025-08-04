@@ -1,0 +1,17 @@
+{
+  "attributes": {
+    "range_bonus": -0.5,
+    "category": "base_slashing_claw",
+    "attacks": [
+      {
+        "hitbox": "HORIZONTAL_PLANE",
+        "angle": 120,
+        "upswing": 0.5,
+        "animation": "bettercombat:one_handed_swipe_horizontal_right",
+        "swing_sound": {
+          "id": "bettercombat:sword_slash"
+        }
+      }
+    ]
+  }
+}

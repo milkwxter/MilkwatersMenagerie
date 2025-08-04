@@ -2,6 +2,7 @@ package entity;
 
 import java.util.function.Supplier;
 
+import entity.custom.FireArrowEntity;
 import entity.custom.StarfuryStarEntity;
 import milkwater.milkmenagerie.MilkwatersMenagerie;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -18,7 +19,14 @@ public class ModEntities {
 	// non monster entities
 	public static final Supplier<EntityType<StarfuryStarEntity>> STARFURY_STAR =
 			ENTITY_TYPES.register("starfurystar", () -> EntityType.Builder.of(StarfuryStarEntity::new, MobCategory.MISC)
-					.sized(1f, 2f).build("starfurystar"));
+					.sized(1f, 2f)
+					.build("starfurystar"));
+	public static final Supplier<EntityType<FireArrowEntity>> FIRE_ARROW =
+			ENTITY_TYPES.register("firearrow", () -> EntityType.Builder.<FireArrowEntity>of(FireArrowEntity::new, MobCategory.MISC)
+					.sized(.5f, .5f)
+					.clientTrackingRange(4)
+		            .updateInterval(20)
+		            .build("firearrow"));
 	
 	// ignore me
 	public static void register(IEventBus eventBus) {

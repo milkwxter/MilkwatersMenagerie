@@ -19,9 +19,13 @@ public class ModItemTagProvider extends ItemTagsProvider {
 		super(output, lookupProvider, blockTags, MilkwatersMenagerie.MODID, existingFileHelper);
 	}
 	
+	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-		tag(ItemTags.SWORDS).add(ModItems.ZOMBIE_ARM_ITEM.get());
-		tag(ItemTags.SWORDS).add(ModItems.STARFURY_ITEM.get());
-		tag(ItemTags.SWORDS).add(ModItems.NIGHTS_EDGE_ITEM.get());
+		tag(ItemTags.SWORDS)
+			.add(ModItems.ZOMBIE_ARM_ITEM.get())
+			.add(ModItems.STARFURY_ITEM.get())
+			.add(ModItems.NIGHTS_EDGE_ITEM.get());
+
+		this.tag(ItemTags.ARROWS).add(ModItems.FIRE_ARROW_ITEM.get());
 	}
 }

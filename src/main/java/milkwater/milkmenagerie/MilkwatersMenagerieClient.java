@@ -1,6 +1,5 @@
 package milkwater.milkmenagerie;
 
-import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -9,6 +8,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import util.ModItemProperties;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = MilkwatersMenagerie.MODID, dist = Dist.CLIENT)
@@ -24,8 +24,7 @@ public class MilkwatersMenagerieClient {
 
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
-        // Some client setup code
-        MilkwatersMenagerie.LOGGER.info("HELLO FROM CLIENT SETUP");
-        MilkwatersMenagerie.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        // register custom item properties, like bow changing textures
+    	ModItemProperties.addCustomItemProperties();
     }
 }
