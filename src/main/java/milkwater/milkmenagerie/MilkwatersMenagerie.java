@@ -1,7 +1,5 @@
 package milkwater.milkmenagerie;
 
-import java.util.Arrays;
-
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -10,10 +8,12 @@ import entity.ModEntities;
 import entity.client.FireArrowRenderer;
 import entity.client.StarfuryStarRenderer;
 import item.ModItems;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Rarity;
@@ -34,6 +34,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import particle.ModParticles;
 import particle.custom.StarParticle;
+import util.ModRarities;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(MilkwatersMenagerie.MODID)
@@ -42,19 +43,14 @@ public class MilkwatersMenagerie {
     public static final String MODID = "milkwatersmenagerie";
     public static final Logger LOGGER = LogUtils.getLogger();
     
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
-
-    
-    public static final DeferredBlock<Block> ROTTENFLESH_BLOCK = BLOCKS.registerSimpleBlock("rotten_flesh_block");
 
     // Creates a creative tab with my stuff
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MILKWATERS_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.milkwatersmenagerie"))
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> ModItems.ROTTENFLESH_BLOCK_ITEM.get().getDefaultInstance())
+            .icon(() -> ModItems.STARFURY_ITEM.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(ModItems.ROTTENFLESH_BLOCK_ITEM.get());
                 output.accept(ModItems.ZOMBIE_ARM_ITEM.get());
                 output.accept(ModItems.BLADED_GLOVE_ITEM.get());
                 output.accept(ModItems.STARFURY_ITEM.get());
@@ -70,13 +66,10 @@ public class MilkwatersMenagerie {
         modEventBus.addListener(this::commonSetup);
 
         // Register the Deferred Registers to the mod event bus so EVERYTHING gets registered
-        BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModEntities.register(modEventBus);
         ModParticles.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
-        
-        System.out.println(Arrays.toString(Rarity.values()));
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (MilkwatersMenagerie) to respond directly to events.
@@ -90,6 +83,14 @@ public class MilkwatersMenagerie {
     private void commonSetup(FMLCommonSetupEvent event) {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
+        
+        // legacy support for mods that show rarity in a weird way
+        ModRarities.ALL_CUSTOM_RARITIES.forEach(proxy -> {
+            Rarity rarity = proxy.getValue();
+            Style style = rarity.getStyleModifier().apply(Style.EMPTY);
+            ChatFormatting formatting = ChatFormatting.valueOf(style.getColor().serialize().toUpperCase());
+            rarity.color = formatting;
+        });
 
         if (Config.LOG_DIRT_BLOCK.getAsBoolean()) {
             LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));

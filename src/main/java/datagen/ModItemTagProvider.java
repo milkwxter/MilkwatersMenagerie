@@ -24,8 +24,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
 		tag(ItemTags.SWORDS)
 			.add(ModItems.ZOMBIE_ARM_ITEM.get())
 			.add(ModItems.STARFURY_ITEM.get())
-			.add(ModItems.NIGHTS_EDGE_ITEM.get());
+			.add(ModItems.NIGHTS_EDGE_ITEM.get())
+			.add(ModItems.BLADED_GLOVE_ITEM.get());
 
-		this.tag(ItemTags.ARROWS).add(ModItems.FIRE_ARROW_ITEM.get());
+		this.tag(ItemTags.ARROWS)
+			.add(ModItems.FIRE_ARROW_ITEM.get());
 	}
 }

@@ -1,17 +1,94 @@
 {
   "entries": [
 	{
-				// The enum class the entry should be added to
-	            "enum": "net/minecraft/world/item/Rarity",
-				// The field name of the new entry, must be prefixed with the mod ID
-	            "name": "milkwatersmenagerie_YELLOW",
-				// The constructor to be used
-	            "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
-	            // The parameters to be used, provided as a reference to an EnumProxy<Rarity> field in the given class
-	            "parameters": {
-	                "class": "util/ModRarities",
-	                "field": "YELLOW"
-	            }
-	 }
-    ]
+	      "enum": "net/minecraft/world/item/Rarity",
+	      "name": "milkwatersmenagerie_BLUE",
+	      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+	      "parameters": {
+	        "class": "util/ModRarities",
+	        "field": "BLUE"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "milkwatersmenagerie_GREEN",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "util/ModRarities",
+        "field": "GREEN"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "milkwatersmenagerie_ORANGE",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "util/ModRarities",
+        "field": "ORANGE"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "milkwatersmenagerie_LIGHT_RED",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "util/ModRarities",
+        "field": "LIGHT_RED"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "milkwatersmenagerie_PINK",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "util/ModRarities",
+        "field": "PINK"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "milkwatersmenagerie_LIGHT_PURPLE",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "util/ModRarities",
+        "field": "LIGHT_PURPLE"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "milkwatersmenagerie_LIME",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "util/ModRarities",
+        "field": "LIME"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "milkwatersmenagerie_YELLOW",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "util/ModRarities",
+        "field": "YELLOW"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "milkwatersmenagerie_CYAN",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "util/ModRarities",
+        "field": "CYAN"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "milkwatersmenagerie_RED",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "util/ModRarities",
+        "field": "RED"
+      }
+    }
+  ]
 }
