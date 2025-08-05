@@ -1,0 +1,17 @@
+{
+  "entries": [
+	{
+				// The enum class the entry should be added to
+	            "enum": "net/minecraft/world/item/Rarity",
+				// The field name of the new entry, must be prefixed with the mod ID
+	            "name": "milkwatersmenagerie_YELLOW",
+				// The constructor to be used
+	            "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+	            // The parameters to be used, provided as a reference to an EnumProxy<Rarity> field in the given class
+	            "parameters": {
+	                "class": "util/ModRarities",
+	                "field": "YELLOW"
+	            }
+	 }
+    ]
+}

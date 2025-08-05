@@ -7,6 +7,7 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import util.ModRarities;
 
 public class ModItems {
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MilkwatersMenagerie.MODID);
@@ -36,6 +37,8 @@ public class ModItems {
     				.attributes(Custom_StarfuryItem.createAttributes(ModToolTiers.PREHARDMODE_TIER, 6, -2.4f))));
     
     public static final DeferredItem<Item> TSUNAMI_ITEM = ITEMS.register("tsunami",
-    	    () -> new Custom_TsunamiItem(new Item.Properties().durability(2048)));
-
+    	    () -> new Custom_TsunamiItem(new Item.Properties()
+    	    		.durability(2048)
+    	    		.rarity(ModRarities.YELLOW.getValue())
+    	    		));
 }

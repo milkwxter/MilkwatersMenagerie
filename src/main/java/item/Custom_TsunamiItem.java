@@ -49,6 +49,9 @@ public class Custom_TsunamiItem extends BowItem {
 	        	this.shootVertical(serverLevel, player, player.getUsedItemHand(), stack, list, drawStrength * 2.0F, 1.0F, drawStrength == 1.0F, verticalOffset);
 	        }
 	        
+
+	        weaponStack.hurtAndBreak(this.getDurabilityUse(ammo), shooter, weaponStack.getEquipmentSlot());
+	        
 	        player.awardStat(Stats.ITEM_USED.get(this));
 	    }
 
@@ -69,10 +72,6 @@ public class Custom_TsunamiItem extends BowItem {
 	            this.shootProjectile(shooter, projectile, i, velocity, inaccuracy, offsetY, null);
 	            
 	            level.addFreshEntity(projectile);
-	            weapon.hurtAndBreak(this.getDurabilityUse(itemstack), shooter, LivingEntity.getSlotForHand(hand));
-	            if (weapon.isEmpty()) {
-	                break;
-	            }
 	        }
 	    }
 	}

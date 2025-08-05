@@ -1,5 +1,7 @@
 package milkwater.milkmenagerie;
 
+import java.util.Arrays;
+
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -14,6 +16,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
@@ -72,6 +75,8 @@ public class MilkwatersMenagerie {
         ModEntities.register(modEventBus);
         ModParticles.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
+        
+        System.out.println(Arrays.toString(Rarity.values()));
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (MilkwatersMenagerie) to respond directly to events.
