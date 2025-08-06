@@ -22,6 +22,11 @@ public class ModItems {
     	    		.rarity(ModRarities.GREEN.getValue())
     	    		));
     
+    public static final DeferredItem<SwordItem> SPEAR_ITEM = ITEMS.register("spear",
+    		() -> new SwordItem(Tiers.IRON, new SwordItem.Properties()
+    				.attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.5f))
+    	    		));
+    
     public static final DeferredItem<SwordItem> NIGHTS_EDGE_ITEM = ITEMS.register("nights_edge",
     		() -> new SwordItem(ModToolTiers.HARDMODE_TIER, new SwordItem.Properties()
     				.attributes(SwordItem.createAttributes(ModToolTiers.HARDMODE_TIER, 10, -2.6f))

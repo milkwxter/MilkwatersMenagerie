@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "i",
+    "i"	,
+	"i"
+  ],
+  "result": {
+    "count": 1,
+    "id": "milkwatersmenagerie:spear"
+  }
+}

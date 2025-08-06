@@ -17,7 +17,6 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -29,7 +28,6 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import particle.ModParticles;
@@ -52,6 +50,7 @@ public class MilkwatersMenagerie {
             .icon(() -> ModItems.STARFURY_ITEM.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 output.accept(ModItems.ZOMBIE_ARM_ITEM.get());
+                output.accept(ModItems.SPEAR_ITEM.get());
                 output.accept(ModItems.BLADED_GLOVE_ITEM.get());
                 output.accept(ModItems.STARFURY_ITEM.get());
                 output.accept(ModItems.TSUNAMI_ITEM.get());
