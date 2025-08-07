@@ -1,0 +1,11 @@
+{
+	"generic_item_use": {
+		"subtitle": "sounds.milkwatersmenagerie.generic_item_use",
+		"sounds": [
+			{
+			  "name": "milkwatersmenagerie:generic_item_use",
+			  "stream": false
+			}
+		]
+	}
+}

@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import entity.custom.FireArrowEntity;
 import entity.custom.StarfuryStarEntity;
+import entity.custom.YoyoProjectileEntity;
 import milkwater.milkmenagerie.MilkwatersMenagerie;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
@@ -27,6 +28,13 @@ public class ModEntities {
 					.clientTrackingRange(4)
 		            .updateInterval(20)
 		            .build("firearrow"));
+	public static final Supplier<EntityType<YoyoProjectileEntity>> YOYO_PROJECTILE =
+			ENTITY_TYPES.register("yoyoprojectile", () -> EntityType.Builder.<YoyoProjectileEntity>of(YoyoProjectileEntity::new, MobCategory.MISC)
+					.sized(.5f, .5f)
+				    .setShouldReceiveVelocityUpdates(true)
+				    .clientTrackingRange(4)
+		            .updateInterval(1)
+					.build("yoyoprojectile"));
 	
 	// ignore me
 	public static void register(IEventBus eventBus) {

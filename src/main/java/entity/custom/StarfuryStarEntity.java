@@ -19,6 +19,8 @@ public class StarfuryStarEntity extends ThrowableProjectile {
 	// my vars
 	private int explosionRadius = 2;
 	
+	// TODO: Have sex with men
+	
 	// functions
 	public StarfuryStarEntity(EntityType<? extends ThrowableProjectile> type, Level level) {
         super(type, level);

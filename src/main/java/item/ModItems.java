@@ -36,6 +36,8 @@ public class ModItems {
     // My custom hard items
     public static final DeferredItem<Item> FIRE_ARROW_ITEM = ITEMS.register("fire_arrow",
     		() -> new Custom_FireArrowItem(new Item.Properties()));
+    public static final DeferredItem<Item> WOODEN_YOYO_ITEM = ITEMS.register("wooden_yoyo",
+    		() -> new Custom_WoodenYoyo(new Item.Properties()));
     
     // My custom impossible items
     public static final DeferredItem<Custom_StarfuryItem> STARFURY_ITEM = ITEMS.register("starfury",

@@ -8,6 +8,9 @@
   "item.milkwatersmenagerie.bladed_glove": "Bladed Glove",
   "item.milkwatersmenagerie.fire_arrow": "Fire Arrow",
   "item.milkwatersmenagerie.spear": "Spear",
+  "item.milkwatersmenagerie.wooden_yoyo": "Wooden Yoyo",
+  
+  "sounds.milkwatersmenagerie.generic_item_use": "Item used.",
 
   "milkwatersmenagerie.configuration.title": "Milkwater's Menagerie Configs",
   "milkwatersmenagerie.configuration.section.milkwatersmenagerie.common.toml": "Milkwater's Menagerie Configs",

@@ -7,6 +7,7 @@ import com.mojang.logging.LogUtils;
 import entity.ModEntities;
 import entity.client.FireArrowRenderer;
 import entity.client.StarfuryStarRenderer;
+import entity.client.YoyoProjectileRenderer;
 import item.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -32,6 +33,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import particle.ModParticles;
 import particle.custom.StarParticle;
+import sound.ModSounds;
 import util.ModRarities;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -56,6 +58,7 @@ public class MilkwatersMenagerie {
                 output.accept(ModItems.TSUNAMI_ITEM.get());
                 output.accept(ModItems.NIGHTS_EDGE_ITEM.get());
                 output.accept(ModItems.FIRE_ARROW_ITEM.get());
+                output.accept(ModItems.WOODEN_YOYO_ITEM.get());
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -68,6 +71,7 @@ public class MilkwatersMenagerie {
         ModItems.ITEMS.register(modEventBus);
         ModEntities.register(modEventBus);
         ModParticles.register(modEventBus);
+        ModSounds.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
@@ -107,6 +111,7 @@ public class MilkwatersMenagerie {
     		event.enqueueWork(() -> {
                 EntityRenderers.register(ModEntities.STARFURY_STAR.get(), StarfuryStarRenderer::new);
                 EntityRenderers.register(ModEntities.FIRE_ARROW.get(), FireArrowRenderer::new);
+                EntityRenderers.register(ModEntities.YOYO_PROJECTILE.get(), YoyoProjectileRenderer::new);
             });
     	}
     	
