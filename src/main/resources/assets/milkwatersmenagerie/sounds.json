@@ -7,5 +7,15 @@
 			  "stream": false
 			}
 		]
-	}
+	},
+	
+	"generic_impact": {
+			"subtitle": "sounds.milkwatersmenagerie.generic_impact",
+			"sounds": [
+				{
+				  "name": "milkwatersmenagerie:generic_impact",
+				  "stream": false
+				}
+			]
+		}
 }

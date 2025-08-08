@@ -59,6 +59,7 @@ public class MilkwatersMenagerie {
                 output.accept(ModItems.NIGHTS_EDGE_ITEM.get());
                 output.accept(ModItems.FIRE_ARROW_ITEM.get());
                 output.accept(ModItems.WOODEN_YOYO_ITEM.get());
+                output.accept(ModItems.RALLY_ITEM.get());
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.

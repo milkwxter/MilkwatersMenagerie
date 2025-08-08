@@ -15,6 +15,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.network.syncher.SynchedEntityData.Builder;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,14 +25,19 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import sound.ModSounds;
 
 public class YoyoProjectileEntity extends Entity {
+	// necessary variables
     private Player owner;
     private ItemStack yoyoStack;
     
+    // constructor variables
     private Item item;
     private double maxDistance;
+    private double yoyoDamage;
     
+    // how long has the yoyo been spawned for
     private int ticksAlive = 0;
     
     private boolean bouncingBack = false;
@@ -58,6 +64,7 @@ public class YoyoProjectileEntity extends Entity {
         
         item = yoyoStack.getItem();
         maxDistance = item instanceof Base_YoyoItem yoyo ? yoyo.getMaxYoyoDistance() : 1.0;
+        yoyoDamage = item instanceof Base_YoyoItem yoyo ? yoyo.getYoyoDamage() : 1.0;
     }
 
     @Override
@@ -91,8 +98,15 @@ public class YoyoProjectileEntity extends Entity {
         }
 
         // after 2 seconds, the yoyo entity dies
-        if (ticksAlive > 40) {
+        if (ticksAlive == 40) {
+        	if (level().isClientSide()) {
+        		this.spawnItemParticles();
+            }
+        	level().playSound(null, this.getX(), this.getY(), this.getZ(), ModSounds.GENERIC_IMPACT.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
+        }
+        if (ticksAlive > 41) {
             discard();
+            return;
         }
     }
     
@@ -111,38 +125,55 @@ public class YoyoProjectileEntity extends Entity {
         Vec3 currentMotion = getDeltaMovement();
         Vec3 desiredMotion = toTarget.normalize().scale(speed);
         
-        double smoothing = 0.35;
+        double smoothing = 0.25;
         Vec3 newMotion = currentMotion.scale(1.0 - smoothing).add(desiredMotion.scale(smoothing));
 
         setDeltaMovement(newMotion);
     }
     
     private void handleHit(List<Entity> hitEntities, Vec3 currentPos) {
-    	// update bouncing variable
-        bouncingBack = true;
+        // special effects if we hit atleast one guy
+        boolean hitSomeone = false;
 
         // damage each entity near the yoyo
         for (Entity entity : hitEntities) {
             if (entity instanceof LivingEntity living && living.getHealth() > 0) {
             	Vec3 knockbackDir = position().subtract(living.position()).normalize();
             	
-                living.hurt(level().damageSources().generic(), 4.0f);
+                living.hurt(level().damageSources().playerAttack(owner), (float) this.yoyoDamage);
                 living.knockback(0.4f, knockbackDir.x(), knockbackDir.z());
+                
+                hitSomeone = true;
+                bouncingBack = true;
+            }
+        }
+        
+        // if we hit someone play a sound
+        if (hitSomeone) {
+        	if (!level().isClientSide) {
+                level().playSound(null, this.getX(), this.getY(), this.getZ(), ModSounds.GENERIC_IMPACT.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
             }
         }
         
         // spawn particles
-        if (level().isClientSide()) {
-        	ItemStack stack = this.getSourceYoyo();
-            if (stack.isEmpty()) return;
+        if (level().isClientSide() && hitSomeone) {
+        	this.spawnItemParticles();
+        }
+    }
+    
+    private void spawnItemParticles() {
+    	ItemStack stack = this.getSourceYoyo();
+        if (stack.isEmpty()) {
+        	System.out.println("ERROR! YOYO STACK WAS EMPTY!");
+        	return;
+        }
 
-            for (int i = 0; i < 8; i++) {
-                level().addParticle(new ItemParticleOption(ParticleTypes.ITEM, stack),
-                		this.getX(), this.getY() + getBbHeight() / 2, this.getZ(),
-                    (random.nextDouble() - 0.5) * 0.2,
-                    (random.nextDouble()) * 0.2,
-                    (random.nextDouble() - 0.5) * 0.2);
-            }
+        for (int i = 0; i < 8; i++) {
+            level().addParticle(new ItemParticleOption(ParticleTypes.ITEM, stack),
+            		this.getX(), this.getY() + getBbHeight() / 2, this.getZ(),
+                (random.nextDouble() - 0.5) * 0.2,
+                (random.nextDouble()) * 0.2,
+                (random.nextDouble() - 0.5) * 0.2);
         }
     }
     

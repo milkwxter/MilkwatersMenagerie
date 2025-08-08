@@ -14,6 +14,7 @@ public class ModSounds {
 			DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, MilkwatersMenagerie.MODID);
 	
 	public static final Supplier<SoundEvent> GENERIC_ITEM_USE = registerSoundEvent("generic_item_use");
+	public static final Supplier<SoundEvent> GENERIC_IMPACT = registerSoundEvent("generic_impact");
 	
 	private static Supplier<SoundEvent> registerSoundEvent(String name){
 		ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MilkwatersMenagerie.MODID, name);

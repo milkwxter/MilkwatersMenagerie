@@ -9,8 +9,10 @@
   "item.milkwatersmenagerie.fire_arrow": "Fire Arrow",
   "item.milkwatersmenagerie.spear": "Spear",
   "item.milkwatersmenagerie.wooden_yoyo": "Wooden Yoyo",
+  "item.milkwatersmenagerie.rally": "Rally",
   
   "sounds.milkwatersmenagerie.generic_item_use": "Item used.",
+  "sounds.milkwatersmenagerie.generic_impact": "Something was hit.",
 
   "milkwatersmenagerie.configuration.title": "Milkwater's Menagerie Configs",
   "milkwatersmenagerie.configuration.section.milkwatersmenagerie.common.toml": "Milkwater's Menagerie Configs",

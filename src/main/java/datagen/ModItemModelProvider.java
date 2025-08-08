@@ -15,6 +15,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 	}
 	
 	protected void registerModels() {
+		// items that dont go in your hand
+		basicItem(ModItems.FIRE_ARROW_ITEM.get());
+		basicItem(ModItems.WOODEN_YOYO_ITEM.get());
+		basicItem(ModItems.RALLY_ITEM.get());
+		
 		// swords and bows and shit
 		handheldItem(ModItems.ZOMBIE_ARM_ITEM);
 		handheldItem(ModItems.STARFURY_ITEM);
