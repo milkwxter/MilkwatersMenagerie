@@ -1,11 +1,16 @@
 package milkwater.milkmenagerie;
 
+import item.Base_YoyoItem;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RenderHandEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import util.ModItemProperties;
@@ -26,5 +31,17 @@ public class MilkwatersMenagerieClient {
     static void onClientSetup(FMLClientSetupEvent event) {
         // register custom item properties, like bow changing textures
     	ModItemProperties.addCustomItemProperties();
+    }
+    
+    @SubscribeEvent
+    public static void onRenderHand(RenderHandEvent event) {
+        Player player = Minecraft.getInstance().player;
+        if (player == null) return;
+
+        ItemStack stack = player.getMainHandItem();
+
+        if (stack.getItem() instanceof Base_YoyoItem yoyo && player.getCooldowns().isOnCooldown(yoyo)) {
+        	event.setCanceled(true);
+        }
     }
 }

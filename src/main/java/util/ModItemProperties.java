@@ -3,14 +3,11 @@ package util;
 import item.ModItems;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public class ModItemProperties {
 	public static void addCustomItemProperties() {
         makeCustomBow(ModItems.TSUNAMI_ITEM.get());
-        makeYoyo(ModItems.WOODEN_YOYO_ITEM.get());
-        makeYoyo(ModItems.RALLY_ITEM.get());
     }
 	
 	private static void makeCustomBow(Item item) {
@@ -26,11 +23,5 @@ public class ModItemProperties {
                 ResourceLocation.withDefaultNamespace("pulling"),
                 (p_174630_, p_174631_, p_174632_, p_174633_) -> p_174632_ != null && p_174632_.isUsingItem() && p_174632_.getUseItem() == p_174630_ ? 1.0F : 0.0F
         );
-    }
-	
-	private static void makeYoyo(Item item) {
-		ItemProperties.register(item, ResourceLocation.withDefaultNamespace("unleashed"), (stack, world, entity, seed) ->
-        	(entity instanceof Player player && player.getCooldowns().isOnCooldown(item)) ? 1.0F : 0.0F
-		);
     }
 }
