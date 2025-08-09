@@ -14,6 +14,6 @@ public class FireArrowRenderer extends ArrowRenderer<FireArrowEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(FireArrowEntity entity) {
-        return ResourceLocation.fromNamespaceAndPath(MilkwatersMenagerie.MODID, "textures/entity/starfury_projectile_texture.png");
+        return ResourceLocation.fromNamespaceAndPath(MilkwatersMenagerie.MODID, "textures/entity/fire_arrow_projectile_texture.png");
     }
 }

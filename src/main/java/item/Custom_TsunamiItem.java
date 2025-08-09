@@ -9,6 +9,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
@@ -46,7 +47,7 @@ public class Custom_TsunamiItem extends BowItem {
 	    	
 	        for (int i = -2; i <= 2; i++) {
 	        	float verticalOffset = i * 0.5F;
-	        	this.shootVertical(serverLevel, player, player.getUsedItemHand(), stack, list, drawStrength * 2.0F, 1.0F, drawStrength == 1.0F, verticalOffset);
+	        	this.shootVertical(serverLevel, player, player.getUsedItemHand(), stack, list, drawStrength * 2.0F, 0, drawStrength == 1.0F, verticalOffset);
 	        }
 	        
 
@@ -54,8 +55,6 @@ public class Custom_TsunamiItem extends BowItem {
 	        
 	        player.awardStat(Stats.ITEM_USED.get(this));
 	    }
-
-	    ammo.shrink(1);
 
 	    level.playSound(null, shooter.getX(), shooter.getY(), shooter.getZ(),
 	        SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -66,6 +65,10 @@ public class Custom_TsunamiItem extends BowItem {
 	        ItemStack itemstack = projectileItems.get(i);
 	        if (!itemstack.isEmpty()) {
 	            Projectile projectile = this.createProjectile(level, shooter, weapon, itemstack, isCrit);
+	            
+	            if (projectile instanceof AbstractArrow arrow) {
+	                arrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
+	            }
 	            
 	            projectile.setPos(shooter.getX(), shooter.getEyeY() + offsetY, shooter.getZ());
 	            projectile.getPersistentData().putBoolean("RemoveIFrames", true);

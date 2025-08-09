@@ -3,13 +3,13 @@ package entity.custom;
 import javax.annotation.Nullable;
 
 import entity.ModEntities;
-import item.ModItems;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 
@@ -49,7 +49,7 @@ public class FireArrowEntity extends AbstractArrow {
 
     @Override
     protected ItemStack getDefaultPickupItem() {
-        return new ItemStack(ModItems.FIRE_ARROW_ITEM.get()); // Replace with your item registry
+        return new ItemStack(Items.ARROW);
     }
 }
 
