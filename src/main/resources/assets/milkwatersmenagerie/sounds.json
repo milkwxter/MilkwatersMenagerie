@@ -17,5 +17,15 @@
 				  "stream": false
 				}
 			]
-		}
+		},
+
+	"magic_cast": {
+				"subtitle": "sounds.milkwatersmenagerie.magic_cast",
+				"sounds": [
+					{
+					  "name": "milkwatersmenagerie:magic_cast",
+					  "stream": false
+					}
+				]
+			}		
 }

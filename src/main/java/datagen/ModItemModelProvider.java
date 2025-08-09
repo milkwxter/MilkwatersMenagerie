@@ -27,6 +27,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		handheldItem(ModItems.NIGHTS_EDGE_ITEM);
 		handheldItem(ModItems.BLADED_GLOVE_ITEM);
 		handheldItem(ModItems.SPEAR_ITEM);
+		handheldItem(ModItems.WAND_OF_SPARKING_ITEM);
 	}
 	
 	private ItemModelBuilder handheldItem(DeferredItem<?> item) {

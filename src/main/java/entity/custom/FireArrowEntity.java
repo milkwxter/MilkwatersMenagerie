@@ -33,7 +33,7 @@ public class FireArrowEntity extends AbstractArrow {
         Entity target = result.getEntity();
         if (target.fireImmune()) return;
         if (target instanceof LivingEntity living) {
-            living.setRemainingFireTicks(80);
+            living.igniteForSeconds(3);
         }
     }
 

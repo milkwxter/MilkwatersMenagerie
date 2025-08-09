@@ -15,6 +15,7 @@ public class ModSounds {
 	
 	public static final Supplier<SoundEvent> GENERIC_ITEM_USE = registerSoundEvent("generic_item_use");
 	public static final Supplier<SoundEvent> GENERIC_IMPACT = registerSoundEvent("generic_impact");
+	public static final Supplier<SoundEvent> MAGIC_CAST = registerSoundEvent("magic_cast");
 	
 	private static Supplier<SoundEvent> registerSoundEvent(String name){
 		ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MilkwatersMenagerie.MODID, name);

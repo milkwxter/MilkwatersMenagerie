@@ -7,6 +7,7 @@ import com.mojang.logging.LogUtils;
 import entity.ModEntities;
 import entity.client.FireArrowRenderer;
 import entity.client.StarfuryStarRenderer;
+import entity.client.WandOfSparkingProjectileRenderer;
 import entity.client.YoyoProjectileRenderer;
 import item.ModItems;
 import net.minecraft.ChatFormatting;
@@ -58,11 +59,12 @@ public class MilkwatersMenagerie {
                 output.accept(ModItems.SPEAR_ITEM.get());
                 output.accept(ModItems.BLADED_GLOVE_ITEM.get());
                 output.accept(ModItems.STARFURY_ITEM.get());
-                output.accept(ModItems.TSUNAMI_ITEM.get());
                 output.accept(ModItems.NIGHTS_EDGE_ITEM.get());
+                output.accept(ModItems.TSUNAMI_ITEM.get());
                 output.accept(ModItems.FIRE_ARROW_ITEM.get());
                 output.accept(ModItems.WOODEN_YOYO_ITEM.get());
                 output.accept(ModItems.RALLY_ITEM.get());
+                output.accept(ModItems.WAND_OF_SPARKING_ITEM.get());
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -85,9 +87,6 @@ public class MilkwatersMenagerie {
         // Note that this is necessary if and only if we want *this* class (MilkwatersMenagerie) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         // NeoForge.EVENT_BUS.register(this);
-
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -123,6 +122,7 @@ public class MilkwatersMenagerie {
                 EntityRenderers.register(ModEntities.STARFURY_STAR.get(), StarfuryStarRenderer::new);
                 EntityRenderers.register(ModEntities.FIRE_ARROW.get(), FireArrowRenderer::new);
                 EntityRenderers.register(ModEntities.YOYO_PROJECTILE.get(), YoyoProjectileRenderer::new);
+                EntityRenderers.register(ModEntities.SPARK.get(), WandOfSparkingProjectileRenderer::new);
             });
     	}
     	

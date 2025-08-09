@@ -10,15 +10,9 @@
   "item.milkwatersmenagerie.spear": "Spear",
   "item.milkwatersmenagerie.wooden_yoyo": "Wooden Yoyo",
   "item.milkwatersmenagerie.rally": "Rally",
+  "item.milkwatersmenagerie.wand_of_sparking": "Wand of Sparking",
   
   "sounds.milkwatersmenagerie.generic_item_use": "Item used.",
   "sounds.milkwatersmenagerie.generic_impact": "Something was hit.",
-
-  "milkwatersmenagerie.configuration.title": "Milkwater's Menagerie Configs",
-  "milkwatersmenagerie.configuration.section.milkwatersmenagerie.common.toml": "Milkwater's Menagerie Configs",
-  "milkwatersmenagerie.configuration.section.milkwatersmenagerie.common.toml.title": "Milkwater's Menagerie Configs",
-  "milkwatersmenagerie.configuration.items": "Item List",
-  "milkwatersmenagerie.configuration.logDirtBlock": "Log Dirt Block",
-  "milkwatersmenagerie.configuration.magicNumberIntroduction": "Magic Number Text",
-  "milkwatersmenagerie.configuration.magicNumber": "Magic Number"
+  "sounds.milkwatersmenagerie.magic_cast": "A spell was cast."
 }

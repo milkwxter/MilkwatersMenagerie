@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import entity.custom.FireArrowEntity;
 import entity.custom.StarfuryStarEntity;
+import entity.custom.WandOfSparkingProjectileEntity;
 import entity.custom.YoyoProjectileEntity;
 import milkwater.milkmenagerie.MilkwatersMenagerie;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -35,6 +36,10 @@ public class ModEntities {
 				    .clientTrackingRange(4)
 		            .updateInterval(1)
 					.build("yoyoprojectile"));
+	public static final Supplier<EntityType<WandOfSparkingProjectileEntity>> SPARK =
+			ENTITY_TYPES.register("spark", () -> EntityType.Builder.<WandOfSparkingProjectileEntity>of(WandOfSparkingProjectileEntity::new, MobCategory.MISC)
+					.sized(.2f, .2f)
+					.build("spark"));
 	
 	// ignore me
 	public static void register(IEventBus eventBus) {
