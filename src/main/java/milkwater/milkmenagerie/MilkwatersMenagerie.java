@@ -27,8 +27,13 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.HandlerThread;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import network.ClientPayloadHandler;
+import network.ManaSyncPayload;
 import particle.ModParticles;
 import particle.custom.StarParticle;
 import sound.ModSounds;
@@ -72,6 +77,9 @@ public class MilkwatersMenagerie {
         ModParticles.register(modEventBus);
         ModSounds.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
+        
+        // register mana payload
+        modEventBus.addListener(this::registerPayloads);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (MilkwatersMenagerie) to respond directly to events.
@@ -94,6 +102,18 @@ public class MilkwatersMenagerie {
             rarity.color = formatting;
         });
     }
+    
+    private void registerPayloads(RegisterPayloadHandlersEvent event) {
+        PayloadRegistrar registrar = event.registrar("1")
+            .executesOn(HandlerThread.NETWORK);
+
+        registrar.playToClient(
+            ManaSyncPayload.TYPE,
+            ManaSyncPayload.STREAM_CODEC,
+            ClientPayloadHandler::handleManaSync
+        );
+    }
+    
     
     @EventBusSubscriber(modid = MODID, value = Dist.CLIENT)
     public static class ClientModEvents{
